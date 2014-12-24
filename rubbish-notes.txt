@@ -1,0 +1,156 @@
+24 December 2014
+
+
+
+When you say dil, what comes to yyour mind?
+
+
+
+c.execute('''CREATE TABLE stocks (date text, trans text, symbol text, qty real, price real)''')
+
+c.execute('''CREATE TABLE users (id integer, name text)''')
+
+
+https://www.sqlite.org/datatype3.html
+
+http://www.tutorialspoint.com/sqlite/sqlite_data_types.htm
+
+
+trading 212
+
+c.execute('''CREATE TABLE users (id integer PRIMARY KEY, name text )''')
+
+P&L statements
+hedgefunds
+investment banking
+IPO
+
+
+
+
+
+c.execute('''CREATE TABLE users (id integer PRIMARY KEY, name text )''')
+
+
+
+
+import sqlite3
+conn = sqlite3.connect('example.db')
+c = conn.cursor()
+c.execute('''CREATE TABLE users (id integer PRIMARY KEY, uname text UNIQUE )''')
+history
+
+
+
+c.execute('''CREATE TABLE users (word text, uname text UNIQUE )''')
+
+
+
+import sqlite3
+conn = sqlite3.connect('example.db')
+c = conn.cursor()
+c.execute('''CREATE TABLE users (id integer PRIMARY KEY, uname text UNIQUE )''')
+c.execute('''CREATE TABLE lang (id integer PRIMARY KEY, lang text UNIQUE )''')
+c.execute('''CREATE TABLE terms (id integer PRIMARY KEY, term text UNIQUE )''')
+c.execute('''CREATE TABLE term_variation (termid integer, varid integer)''')
+c.execute('''CREATE TABLE term_stem (termid integer, stemid integer)''')
+history
+
+
+term_*  ALL ARE INSTANCES OF TERM-RELATION
+
+
+vote
+sample=example
+comment
+emotion
+
+suggestion
+
+c.execute('''CREATE TABLE term_lang (termid integer PRIMARY KEY, langid integer)''') #langid: not unique
+
+
+#c.execute('''CREATE TABLE term_equiv (termid integer, equivid integer)''') #Foreign key. Their lang is ? #in what context?
+
+
+c.execute('''CREATE TABLE contexts (id integer, context text)''')
+
+#c.execute('''CREATE TABLE term_contexts (contextid integer, termid text)''')
+
+#there is a context for every equivalence? / suggestion
+
+# an eq can be a suggestion or a real equiv. based on sources, decisions, etc.
+#decisions = consolidated!
+(cool! output?)
+
+#binds a context to an instance of an equivalence:
+c.execute('''CREATE TABLE term_equiv (termid integer, equivid integer, contextid integer)''') #Foreign key. Their lang is ? #in what context?
+
+...
+
+#DATA INTEGRITY IS NOT CHECKED BY THE DB.
+
+
+
+import sqlite3
+conn = sqlite3.connect('example.db')
+c = conn.cursor()
+c.execute('''CREATE TABLE users (id integer PRIMARY KEY, uname text UNIQUE )''')
+#c.execute('''CREATE TABLE lang (id integer PRIMARY KEY, lang text UNIQUE )''')
+c.execute('''CREATE TABLE terms (id integer PRIMARY KEY, term text UNIQUE )''')
+c.execute('''CREATE TABLE term_variation (termid integer, varid integer)''')
+# c.execute('''CREATE TABLE term_stem (termid integer, stemid integer)''')
+c.execute('''CREATE TABLE term_equiv (termid integer, equivid integer)''')
+#termlang is (will be) separate!
+#c.execute('''CREATE TABLE contexts (id integer, context text)''')
+#binding context:
+#c.execute('''CREATE TABLE term_equiv (termid integer, equivid integer, contextid integer)''') #Foreign key. Their lang is ? #in what context?
+#term_* is a relation on term
+#equiv_* is a relation (binding) on term_equiv, which itself is a relation, but an important one.
+#c.execute('''CREATE TABLE equiv_vote (termid integer, equivid integer, userid integer)''') #who
+#types: VOTE, I_OWN_IT, I_PROHIBIT_IT, ...
+c.execute('''CREATE TABLE equiv_vote (termid integer, equivid integer, userid integer, vtype integer)''')
+c.execute('''CREATE TABLE vote_type (id integer, vtype text)''')
+
+
+
+now summary:
+
+import sqlite3
+conn = sqlite3.connect('example.db')
+c = conn.cursor()
+c.execute('''CREATE TABLE users (id integer PRIMARY KEY, uname text UNIQUE )''')
+history
+c.execute('''CREATE TABLE lang (id integer PRIMARY KEY, lang text UNIQUE )''')
+c.execute('''CREATE TABLE terms (id integer PRIMARY KEY, term text UNIQUE )''')
+c.execute('''CREATE TABLE term-variation (termid integer, varid integer)''')
+c.execute('''CREATE TABLE term_variation (termid integer, varid integer)''')
+c.execute('''CREATE TABLE term_stem (termid integer, stemid integer)''')
+history
+c.execute('''CREATE TABLE term_equiv (termid integer, equivid integer)''')
+c.execute('''CREATE TABLE equiv_vote (termid integer, equivid integer, userid integer, vtype integer)''')
+c.execute('''CREATE TABLE vote_type (id integer, vtype text)''')
+history
+
+
+
+
+
+
+    SQLite does not have a storage class set aside for storing dates and/or times. Instead, the built-in Date And Time Functions of SQLite are capable of storing dates and times as TEXT, REAL, or INTEGER values:
+
+        TEXT as ISO8601 strings ("YYYY-MM-DD HH:MM:SS.SSS").
+        REAL as Julian day numbers, the number of days since noon in Greenwich on November 24, 4714 B.C. according to the proleptic Gregorian calendar.
+        INTEGER as Unix Time, the number of seconds since 1970-01-01 00:00:00 UTC.
+
+    Applications can chose to store dates and times in any of these formats and freely convert between formats using the built-in date and time functions.
+
+
+http://stackoverflow.com/questions/2583783/sqlite-column-format-for-unix-timestamp-integer-types
+
+
+SELECT date('now');
+
+
+
+
