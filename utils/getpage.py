@@ -106,4 +106,12 @@ def search(query):
                 print(data)
         return results
 
-print search("hello")
+
+import sys
+argv = sys.argv
+q=argv[1]
+print "looking for %s"%q
+print search(q)
+
+# example usage:
+# ./getpage.py "sohail site:guardian.co.uk"
